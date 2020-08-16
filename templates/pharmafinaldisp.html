@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+   <head>
+     <title>Pharmacy Patient Display</title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='edits.css') }}">
+     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+     <style>
+      table,th,tr,td{
+            border:solid black;
+            padding: 15px;
+            teat-align:center;
+
+            }
+      table{
+            border-spacing: 15px;
+              }
+      body {
+            background-color: skyblue;
+            text-align: center;
+            margin-left: 20px;
+            }
+            h1{
+                  background-color: skyblue;
+                  text-align: center;
+                  margin-left: 20px;
+                  }
+      th,tr,td{
+            padding: 5px;
+            }
+      </style>
+   </head>
+   <body style="text-align:center" bgcolor="skyblue" action="/diagsave" method="POST">
+     <h1><a style="text_align:center" href = "{{ url_for('home') }}"> Hospital Management System</h1>
+     <nav>
+       <ul>
+       <li class="dropdown">
+         <a href="javascript:void(0)" class="dropbtn">Patient</a>
+         <div class="dropdown-content">
+           <a href="/newpatient">Create patient</a>
+           <a href="/updat">Update patient</a>
+           <a href="/deletepatient">Delete patient</a>
+           <a href="/searchpatient">Search patient</a>
+           <a href="/viewpatient">View all patients</a>
+         </div>
+       </li>
+       <li class="dropdown">
+         <a href="javascript:void(0)" class="dropbtn">Pharmacy</a>
+         <div class="dropdown-content">
+           <a href="/pharmafetch">Medicines Add</a>
+         </div>
+       </li>
+       <li class="dropdown">
+         <a href="javascript:void(0)" class="dropbtn">Diagnostics</a>
+         <div class="dropdown-content">
+           <a href="/diagfetch">Diagnostics Add</a>
+         </div>
+       </li>
+       <li class="dropdown">
+         <a href="javascript:void(0)" class="dropbtn">Bill Payment</a>
+         <div class="dropdown-content">
+           <a href="/finalbill">Make bill</a>
+         </div>
+       </li>
+       {% for i in range(24) %}
+       <li class="dropdown">
+         <a href="javascript:void(0)" class="dropbtn">            </a>
+       </li>
+     {% endfor %}
+       <li class="dropdown">
+         <a href="/logout" class="dropbtn"> Logout </a>
+       </li>
+     </ul>
+     </nav>
+     <h1> Pharmacy Patient Details Display </h1>
+
+      <table style="border:1px solid black;margin-left:auto;margin-right:auto;" class="pure-table">
+         <thead>
+            <tr>
+               <th>Patient id</th>
+               <th>Patient Name</th>
+               <th>Patient Age</th>
+               <th>Date of Admission</th>
+               <th>Type of Bed</th>
+               <th>Address</th>
+               <th>State</th>
+               <th>City</th>
+            </tr>
+         </thead>
+
+         <tbody style="text-align:center">
+            {% for i in x  %}
+               <tr class="pure-table-odd">
+                  <td>{{ i.patient_id }}</td>
+                  <td>{{ i.patient_name }}</td>
+                  <td>{{ i.patient_age}}</td>
+                  <td>{{ i.date_of_admission }}</td>
+                  <td>{{ i.type_of_bed }}</td>
+                  <td>{{ i.address }}</td>
+                  <td>{{ i.state }}</td>
+                  <td>{{ i.city }}</td>
+               </tr>
+            {% endfor %}
+      </tbody>
+      </table><br>
+      {%if y %}
+      <h1> Patient Medicines Display </h1>
+      {%- for category, message in get_flashed_messages(with_categories = true) %}
+               <div class = "alert alert-danger">
+                  {{ message }}
+               </div>
+      {%- endfor %}<br>
+        <table style="border:1px solid black;margin-left:auto;margin-right:auto;" class="pure-table">
+          <thead>
+           <tr>
+                 <th>Medicine Name</th>
+                 <th>Medicine Cost</th>
+                 <th>Quantity Asked</th>
+                 <th>Total Amount</th>
+           </tr>
+          </thead>
+
+          <tbody style="text-align:center">
+            {% for j in y %}
+              <tr class="pure-table-odd">
+                      <td>{{ j.medicine }}</td>
+                      <td>Rs.{{ j.rate }}</td>
+                      <td>{{ j.quantity }}</td>
+                      <td>Rs.{{ j.amount }}</td>
+              </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+      {% endif %}
+      <br>
+      <form method="POST" class="pure-form pure-form-aligned" action="{{ url_for('pharmaadd') }}">
+        <tables align="center">
+            <td > <input type="submit" value=" Add  another Medicines " action="{{ url_for('pharmaadd') }}" style="background:#01090C ;color:white; border:none; border-radius:15px; padding:10px" /></td>
+            </tables>
+      </form>
+</body><br>

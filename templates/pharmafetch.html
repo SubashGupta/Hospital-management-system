@@ -1,0 +1,81 @@
+<!doctype html>
+<head>
+<title>Diagnostics Patient Search </title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='edits.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+<style>
+footer{
+  text-align:center;
+  padding:3px;
+  color: black;
+  }
+  body , h1{
+    background-color: skyblue;
+    text-align: center;
+    margin-left: 20px;
+  }
+  table,th,tr,td{
+      padding: 5px;
+      }
+  table{
+      border-spacing: 15px;
+       }
+</style>
+</head>
+<body>
+  <h1><a style="text_align:center" href = "{{ url_for('home') }}"> Hospital Management System</h1>
+<nav>
+  <ul>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Patient</a>
+    <div class="dropdown-content">
+      <a href="/newpatient">Create patient</a>
+      <a href="/updat">Update patient</a>
+      <a href="/deletepatient">Delete patient</a>
+      <a href="/searchpatient">Search patient</a>
+      <a href="/viewpatient">View all patients</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Pharmacy</a>
+    <div class="dropdown-content">
+      <a href="/pharmafetch">Medicines Add</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Diagnostics</a>
+    <div class="dropdown-content">
+      <a href="/diagfetch">Diagnostics Add</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Bill Payment</a>
+    <div class="dropdown-content">
+      <a href="/finalbill">Make bill</a>
+    </div>
+  </li>
+  {% for i in range(24) %}
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">            </a>
+  </li>
+{% endfor %}
+  <li class="dropdown">
+    <a href="/logout" class="dropbtn"> Logout </a>
+  </li>
+</ul>
+</nav>
+<h1> Patient Pharmacy Search </h1>
+{%- for category, message in get_flashed_messages(with_categories = true) %}
+         <div class = "alert alert-danger">
+            {{ message }}
+         </div>
+{%- endfor %}
+
+<form method="POST" class="pure-form pure-form-aligned" action="/pharmafetch" method = "POST">
+  <table align="center">
+      <div class="pure-control-group"><tr><th >Patient id* :</th><td><input type="number" name= "patient id" /></td><td > <input type="submit" value="   Get   " action="/pharmafetch" style="background:#01090C ;color:white; border:none; border-radius:15px; padding:10px" /></td></tr>
+
+  </table>
+  <h4> "*" represents Mandatory fields </h4>
+</form>
+</body>
