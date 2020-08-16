@@ -18,7 +18,7 @@ Go to your localhost URL (http://127.0.0.1:5000/) or the link shown in the comma
 ------------------------------------------------------------------------------------------------------------------------------------
 FOR LOGIN:
 
-Username: subash
+Username: subash 
 password: subash
 
 ****PS: This application is created by the manager and the application is used by the receptionist and pharmacist hence there is
