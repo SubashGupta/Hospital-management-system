@@ -1,6 +1,6 @@
 
                                             HOSPITAL MANAGEMENT SYSTEM
-                                                                                                      BY K.SUBASH GUPTA
+                                                                                          BY K.SUBASH GUPTA
 
 For running this code :
 
@@ -49,4 +49,4 @@ In Project code folder  the  " host.sqlite3 " has the tables with values in it.
 
 THANK YOU FOR DOWNLOADING :)
 
-                                                                                                        BY K.SUBASH GUPTA
+                                                                                             BY K.SUBASH GUPTA
